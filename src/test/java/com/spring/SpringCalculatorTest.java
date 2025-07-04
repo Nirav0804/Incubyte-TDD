@@ -18,4 +18,5 @@ public class SpringCalculatorTest{
     public void inputIsEmptyString() {
         assertEquals(0,stringCalculator.add(""));
     }
+
 }
