@@ -41,6 +41,8 @@ public class SpringCalculatorTest{
 
     @Test
     public void inputStringContainsNewLineCharacterAsDelimiter(){
-        assertEquals(3,stringCalculator.add("1\n2,3"));
+        assertEquals(6,stringCalculator.add("1\n2,3"));
+        assertEquals(10,stringCalculator.add("1\n2\n3\n4"));
+        assertEquals(3,stringCalculator.add("1\n2"));
     }
 }
