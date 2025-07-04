@@ -30,4 +30,9 @@ public class SpringCalculatorTest{
         assertEquals(3,stringCalculator.add("1,2"));
         assertEquals(100,stringCalculator.add("99,1"));
     }
+
+    @Test
+    public void inputStringContainsUnknownAmountOfNumbers(){
+        assertEquals(7,stringCalculator.add("1,2,4"));
+    }
 }
