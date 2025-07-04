@@ -33,6 +33,11 @@ public class SpringCalculatorTest{
 
     @Test
     public void inputStringContainsUnknownAmountOfNumbers(){
-        assertEquals(7,stringCalculator.add("1,2,4"));
+        assertEquals(34,stringCalculator.add("1,2,4,8,7,5,3,4"));
+        assertEquals(3,stringCalculator.add("1,2"));
+        assertEquals(100,stringCalculator.add("100"));
+        assertEquals(0,stringCalculator.add(""));
     }
+
+
 }
