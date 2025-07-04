@@ -45,4 +45,10 @@ public class SpringCalculatorTest{
         assertEquals(10,stringCalculator.add("1\n2\n3\n4"));
         assertEquals(3,stringCalculator.add("1\n2"));
     }
+
+    @Test
+    public void inputStringContainsUserDefinedDelimiter(){
+        assertEquals(3,stringCalculator.add ("//;\n1;2"));
+        assertEquals(8,stringCalculator.add ("//;\n2;2\n2,2"));
+    }
 }
