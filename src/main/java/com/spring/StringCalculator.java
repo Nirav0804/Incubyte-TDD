@@ -13,14 +13,14 @@ public class StringCalculator {
         for (String number : numbers) {
             int num = Integer.parseInt(number);
             if(num <0) {
-                throw new IllegalArgumentException("negative number not allowed" + num);
+                throw new IllegalArgumentException("negative number not allowed " + num);
             }
             sum += num;
         }
         return sum;
     }
 
-    public int add(String input) {
+    public int add(String input) throws IllegalArgumentException {
         String delimiters = "[,\\n]";  // Default delimiters
 
         if (input.isEmpty()) {

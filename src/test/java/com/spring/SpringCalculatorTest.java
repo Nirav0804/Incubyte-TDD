@@ -55,7 +55,13 @@ public class SpringCalculatorTest{
 
     @Test
     public void inputStringContainingNegativeNumberShouldThrowAnException(){
-        assertThrows(IllegalArgumentException.class, ()->stringCalculator.add("-1"));
-        assertThrows(IllegalArgumentException.class, ()->stringCalculator.add("//;\n-1;3"));
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, ()->stringCalculator.add("-1,3,2"));
+        assertEquals(illegalArgumentException.getMessage(),"negative number not allowed "+ -1);
+    }
+
+    @Test
+    public void inputStringContainingMultipleNegativeNumbersShouldThrowAnException(){
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, ()->stringCalculator.add("//;\n-1;-3\n-4,;1"));
+        assertEquals(illegalArgumentException.getMessage(),"negative number not allowed " + "["+ -1 + -3 + -4 +"]");
     }
 }
