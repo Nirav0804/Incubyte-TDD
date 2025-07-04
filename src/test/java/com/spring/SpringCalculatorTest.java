@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class SpringCalculatorTest{
 
@@ -50,5 +51,11 @@ public class SpringCalculatorTest{
     public void inputStringContainsUserDefinedDelimiter(){
         assertEquals(3,stringCalculator.add ("//;\n1;2"));
         assertEquals(8,stringCalculator.add ("//;\n2;2\n2,2"));
+    }
+
+    @Test
+    public void inputStringContainingNegativeNumberShouldThrowAnException(){
+        assertThrows(Exception.class, ()->stringCalculator.add("-1"));
+        assertThrows(Exception.class, ()->stringCalculator.add("//;\n-1,3"));
     }
 }
