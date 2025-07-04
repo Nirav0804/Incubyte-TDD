@@ -24,4 +24,9 @@ public class SpringCalculatorTest{
         assertEquals(1,stringCalculator.add("1"));
         assertEquals(100,stringCalculator.add("100"));
     }
+
+    @Test
+    public void inputStringContainsTwoNumbersAndItShouldReturnSumOfTwoNumbers(){
+        assertEquals(3,stringCalculator.add("1,2"));
+    }
 }
