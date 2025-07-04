@@ -1,5 +1,7 @@
 package com.spring;
 
+import java.util.ArrayList;
+
 public class StringCalculator {
 
     public String addNewDelimiter(String newDelimiter, String delimiters) {
@@ -10,12 +12,16 @@ public class StringCalculator {
 
     public int calculateSum(String[] numbers) {
         int sum = 0;
+        ArrayList<Integer> negativeNumbers = new ArrayList<>();
         for (String number : numbers) {
             int num = Integer.parseInt(number);
             if(num <0) {
-                throw new IllegalArgumentException("negative number not allowed " + num);
+                negativeNumbers.add(num);
             }
             sum += num;
+        }
+        if(negativeNumbers.size() > 0) {
+            throw new IllegalArgumentException("negative numbers are not allowed " + negativeNumbers);
         }
         return sum;
     }
