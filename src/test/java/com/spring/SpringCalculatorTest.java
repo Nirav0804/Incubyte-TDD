@@ -19,4 +19,9 @@ public class SpringCalculatorTest{
         assertEquals(0,stringCalculator.add(""));
     }
 
+    @Test
+    public void inputStringContainsOneNumberAndItShouldReturnNumberItself(){
+        assertEquals(1,stringCalculator.add("1"));
+    }
+
 }
