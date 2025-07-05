@@ -70,4 +70,9 @@ public class SpringCalculatorTest{
         assertNotEquals(7,stringCalculator.add("//;\n2;2\n2,2"));
         assertEquals(4,stringCalculator.getCalledCount());
     }
+
+    @Test
+    public void inputStringContainsNumberGreaterThan1000ShouldBeIgnored(){
+        assertEquals(100,stringCalculator.add("//;\n1000,50\n40;10"));
+    }
 }
