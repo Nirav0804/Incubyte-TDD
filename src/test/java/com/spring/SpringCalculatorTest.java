@@ -76,4 +76,9 @@ public class SpringCalculatorTest{
         assertEquals(100,stringCalculator.add("//;\n1001,50\n40;10"));
         assertEquals(1010,stringCalculator.add("//;\n1000,5\n4;1"));
     }
+
+    @Test
+    public void inputStringContainsUserDefinedDelimiterOfLengthGreaterThanOne(){
+        assertEquals(3,stringCalculator.add("//[***]\n1*2"));
+    }
 }
