@@ -63,4 +63,10 @@ public class SpringCalculatorTest{
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, ()->stringCalculator.add("//;\n-1;-3\n-4;1"));
         assertEquals(illegalArgumentException.getMessage(),"negative numbers are not allowed [-1, -3, -4]");
     }
+    @Test
+    public void testToCountNumberOfTimesAddMethodCalled(){
+        stringCalculator.add("1,2");
+        stringCalculator.add("//;\n1;2,3\n4");
+        assertEquals(2,stringCalculator.getAddCount());
+    }
 }
