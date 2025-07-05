@@ -11,12 +11,23 @@ public class StringCalculator {
     public String addNewDelimiter(String newDelimiter, String delimiters) {
         StringBuilder updatedDelimiters;
         if (newDelimiter.startsWith("[") && newDelimiter.endsWith("]")) {
-            newDelimiter = newDelimiter.substring(1, newDelimiter.length() - 1);
-            newDelimiter = newDelimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1"); // Use to Replace Escape sequence character
-            updatedDelimiters = new StringBuilder();
-            updatedDelimiters.append(",|\\n");
-            updatedDelimiters.append("|").append(newDelimiter);
-            return updatedDelimiters.toString();
+            if(newDelimiter.charAt(2)==']'){
+                newDelimiter = newDelimiter.substring(1,newDelimiter.length()-1);
+                updatedDelimiters = new StringBuilder();
+                updatedDelimiters.append(",|\\n");
+                for(int i=0;i<newDelimiter.length();i+=3){
+                    String delimiter = String.valueOf(newDelimiter.charAt(i));
+                    delimiter = delimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1");
+                    updatedDelimiters.append("|").append(delimiter);
+                }
+            }else{
+                newDelimiter = newDelimiter.substring(1, newDelimiter.length() - 1);
+                newDelimiter = newDelimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1"); // Use to Replace Escape sequence character
+                updatedDelimiters = new StringBuilder();
+                updatedDelimiters.append(",|\\n");
+                updatedDelimiters.append("|").append(newDelimiter);
+                return updatedDelimiters.toString();
+            }
         }else{
             updatedDelimiters = new StringBuilder(delimiters.substring(0, delimiters.length() - 1));
             updatedDelimiters.append(newDelimiter).append("]");
@@ -57,7 +68,6 @@ public class StringCalculator {
             String newDelimiter = input.substring(delimiterStartIndex, delimiterEndIndex);// get new delimiter
             input = input.substring(delimiterEndIndex + 1); // get new substring having all numbers and delimiters
             delimiters = addNewDelimiter(newDelimiter, delimiters);
-            System.out.println(delimiters);
         }
 
         String[] numbers = input.split(delimiters);
