@@ -1,6 +1,7 @@
 package com.spring;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StringCalculator {
     private int count =0;
@@ -11,22 +12,13 @@ public class StringCalculator {
     public String addNewDelimiter(String newDelimiter, String delimiters) {
         StringBuilder updatedDelimiters;
         if (newDelimiter.startsWith("[") && newDelimiter.endsWith("]")) {
-            if(newDelimiter.charAt(2)==']'){
-                newDelimiter = newDelimiter.substring(1,newDelimiter.length()-1);
+            String delims = newDelimiter.substring(1, newDelimiter.length() - 1);
+            String [] seperateDelimiters = delims.split("]\\[");
                 updatedDelimiters = new StringBuilder();
                 updatedDelimiters.append(",|\\n");
-                for(int i=0;i<newDelimiter.length();i+=3){
-                    String delimiter = String.valueOf(newDelimiter.charAt(i));
-                    delimiter = delimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1");
-                    updatedDelimiters.append("|").append(delimiter);
-                }
-            }else{
-                newDelimiter = newDelimiter.substring(1, newDelimiter.length() - 1);
-                newDelimiter = newDelimiter.replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1"); // Use to Replace Escape sequence character
-                updatedDelimiters = new StringBuilder();
-                updatedDelimiters.append(",|\\n");
-                updatedDelimiters.append("|").append(newDelimiter);
-                return updatedDelimiters.toString();
+            for(int i = 0; i < seperateDelimiters.length; i++){
+                seperateDelimiters[i] = seperateDelimiters[i].replaceAll("([\\\\*+\\[\\](){}|.^$?])", "\\\\$1");
+                updatedDelimiters.append("|").append(seperateDelimiters[i]);
             }
         }else{
             updatedDelimiters = new StringBuilder(delimiters.substring(0, delimiters.length() - 1));
