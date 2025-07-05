@@ -3,7 +3,11 @@ package com.spring;
 import java.util.ArrayList;
 
 public class StringCalculator {
+    private int count =0;
 
+    public int getCalledCount(){
+        return this.count;
+    }
     public String addNewDelimiter(String newDelimiter, String delimiters) {
         String updatedDelimiters = delimiters.substring(0, delimiters.length() - 1); // get the substring that do not have "]"
         updatedDelimiters += newDelimiter + "]"; // add newDelimiter and "]"
@@ -27,6 +31,7 @@ public class StringCalculator {
     }
 
     public int add(String input) throws IllegalArgumentException {
+        count++;
         String delimiters = "[,\\n]";  // Default delimiters
 
         if (input.isEmpty()) {

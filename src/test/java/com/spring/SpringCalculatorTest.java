@@ -3,8 +3,7 @@ package com.spring;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.*;
 
 public class SpringCalculatorTest{
 
@@ -65,8 +64,10 @@ public class SpringCalculatorTest{
     }
     @Test
     public void testToCountNumberOfTimesAddMethodCalled(){
-        stringCalculator.add("1,2");
-        stringCalculator.add("//;\n1;2,3\n4");
-        assertEquals(2,stringCalculator.getAddCount());
+        assertEquals(3,stringCalculator.add("1,2"));
+        assertThrows(IllegalArgumentException.class,()->stringCalculator.add("-1"));
+        assertThrows(IllegalArgumentException.class, ()->stringCalculator.add("//;\n-1;-3\n-4;1"));
+        assertNotEquals(7,stringCalculator.add("//;\n2;2\n2,2"));
+        assertEquals(4,stringCalculator.getCalledCount());
     }
 }
